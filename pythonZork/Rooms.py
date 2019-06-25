@@ -3,10 +3,10 @@
 import abc
 class Room:
 
-
-    @abc.abstractmethod
+    
     def show_info(self, parameter_list):
-       raise NotImplementedError
+        raise NotImplementedError
+       
 
     
 

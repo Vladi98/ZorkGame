@@ -1,3 +1,5 @@
+from Rooms import Room
+
 class KidsRoom(Room):
 
 

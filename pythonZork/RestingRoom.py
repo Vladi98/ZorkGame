@@ -29,6 +29,8 @@ class RestingRoom(Room):
 
         self.items.append(item1)
         self.items.append(item2)
+        self.items.append(item3)
+
 
     def open_door(self):
         keyItem =''

@@ -39,6 +39,7 @@ class Basement(Room):
         for i in Basement.items:
             if i.name=='Basementkey':
                 keyItem = i
+                break
 
         if Player.inventory.check_if_has_item(keyItem):
             print('The door is now open! There are stairs')

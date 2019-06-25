@@ -8,7 +8,7 @@ from Menu import Menu
 from Player import Player
 from StorageRoom import StorageRoom
 from RestingRoom import RestingRoom
-#from Parser import Parser
+from Parser import Parser
 from sys import exit
 
 
@@ -16,19 +16,20 @@ from sys import exit
 
 p = Player('Vladimir')
 Menu.action()
-basement = Basement('Basement','Storage room')
-basement.add_items()
+
 
 storageRoom =StorageRoom('Storageroom','Resting room')
 restingRoom =RestingRoom('Storageroom','Resting room')
+basement = Basement('Basement',storageRoom)
 
 storageRoom.add_items()
-
+basement.add_items()
 currentRoom = basement
 currentRoom.show_info()
 command = input()
 while True:
-    tokens = command.split()
+    parsed_command = Parser.parse(command)
+    tokens = parsed_command.split(' ')
    #tokens = Parser.parse(command)
 
     #if currentRoom == storageRoom:
@@ -37,7 +38,7 @@ while True:
 
     if tokens[0] == 'go' and tokens[1] == 'next':
         if currentRoom.has_door() and currentRoom.open_door():
-            currentRoom = restingRoom
+            currentRoom = currentRoom.links
             currentRoom.show_info()
 
         else:
