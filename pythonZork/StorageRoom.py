@@ -5,14 +5,13 @@ from Rooms import Room
 
 class StorageRoom(Room):
 
-    def __init__(self,name,links):
+    def __init__(self,name,):
         self.name =name
-        self.links = links
         self.items =[]
 
 
     def show_info(self):
-        print('This is a storage room! Looks like just another room filled with boxes and barrels, but look out! Rah! It has a chain over the door','It links to the resting rooms')
+        print('This is a storage room! Looks like just another room filled with boxes and barrels, but look out! Rah! It has a chain over the door. It links to the resting rooms')
         print('It has the following furnitures inside:')
      
         print('and the following items scattered all over the room: ')
@@ -24,7 +23,7 @@ class StorageRoom(Room):
         return True
 
     def add_items(self):
-        item1 = Items('Iphone 10','A brand new Iphone')
+        item1 = Items('Iphone10','A brand new Iphone')
         item2  = Items('Storagekey','This is a key which unlocks the storage room door')
 
         self.items.append(item1)
@@ -45,3 +44,8 @@ class StorageRoom(Room):
         else:
             print('Cannot open the door you either dont have a key or you dont have anything to smash the chain')
             return False
+
+    
+    def all_passed(self):
+        if self.has_door() and self.open_door():
+            return True

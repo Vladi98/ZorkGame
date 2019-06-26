@@ -1,12 +1,13 @@
 from Rooms import Room
+from Items import Items
 
 class KidsRoom(Room):
 
+    items =[]
 
-    def __init__(self,name,links):
-        self.name =name
-        self.links = links
-        self.items =[]
+    def __init__(self,name):
+        self.name =name      
+        
 
 
     def show_info(self):
@@ -21,13 +22,17 @@ class KidsRoom(Room):
     def has_door(self):
         return False
 
+    def has_ligher(self):
+        return True
+
     def add_items(self):
         item1 = Items('Nice warm jacket','A very warm jacket')
-        item2  = Items('Hammer','A legit heavy hummer used as a weapon in the 18th century! The kids can not lift it obviously!')
-        item3  = Items('','This is a key which unlocks the storage room door')
-        item4  = Items('Storagekey','This is a key which unlocks the storage room door')
-        item5  = Items('Storagekey','This is a key which unlocks the storage room door')
-
-
+        item2  = Items('Hammer','A legit heavy hummer used as a weapon in the 18th century! The kids can not lift it obviously, but you can!')
+        item3  = Items('Gun(toy)','Just a toy gun loaded with rubber arrows')
         self.items.append(item1)
         self.items.append(item2)
+        self.items.append(item3)
+
+    def all_passed(self):
+        if  self.has_ligher():
+            return True

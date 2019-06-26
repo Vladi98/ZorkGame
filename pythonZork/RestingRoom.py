@@ -1,12 +1,12 @@
 from Rooms import Room
 from Player import Player
+from Items import Items
 
 class RestingRoom(Room):
 
 
-    def __init__(self,name,links):
+    def __init__(self,name):
         self.name =name
-        self.links = links
         self.items =[]
 
 
@@ -23,7 +23,7 @@ class RestingRoom(Room):
         return True
 
     def add_items(self):
-        item2  = Items('Big suitcase','A big travelling suitcase')
+        item1  = Items('Military bag','A big bag used by the military forces in WWII')
         item2  = Items('Sunglases','A big travelling suitcase')
         item3  = Items('Wire rope','A very durable and reliable rope')
 
@@ -40,12 +40,18 @@ class RestingRoom(Room):
 
         if Player.inventory.check_if_has_item(keyItem):
             password = input('Enter password: ')
-            if password=='M*****1':
+            if password=='MentorMate1':
                 print('Congrats! The door is now opened')
                 return True
             else:
                 print('Incorrect password!')
                 return False
         else:
-            print('Cannot open the door it is protected via password. The password is the same as M******e Wifi - password. To enter the password you must have an electronic device in you, currently you dont! :)')
+            print('Cannot open the door it is protected via password. The password is the same as MentorMate1 Wifi - password. To enter the password you must have an electronic device in you, currently you dont! :)')
             return False
+
+
+
+    def all_passed(self):
+        if self.has_door() and self.open_door():
+            return True

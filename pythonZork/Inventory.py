@@ -3,7 +3,7 @@ from Items import Items
 class Inventory:
 
     collection_of_items =[]
-    max_capacity = 4
+    max_capacity = 3
     def __init__(self,info):
         self.info =info
 
@@ -34,3 +34,5 @@ class Inventory:
     @staticmethod
     def set_max_capacity(self,capacity):
         self.max_capacity = capacity
+
+    

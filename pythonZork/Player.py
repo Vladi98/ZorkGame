@@ -4,11 +4,10 @@ from Commands import Commands
 
 class Player:
 
-    inventory = Inventory("This is the inventory of the player")    
+    inventory = Inventory("This is the inventory of the player")
 
     def __init__(self,name):
         self.name =name
-
 
     
     def grab_item(self,item_name,currentRoom):

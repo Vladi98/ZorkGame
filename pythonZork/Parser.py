@@ -2,6 +2,9 @@ from Commands import Commands
 from Rooms import Room
 from Basement import Basement
 from Ceiling import Ceiling
+from Closet import Closet
+from Hallway import Hallway
+from FinalRoom import FinalRoom
 from StorageRoom import StorageRoom
 from RestingRoom import RestingRoom
 from KidsRoom import KidsRoom
@@ -13,10 +16,10 @@ class Parser:
     @staticmethod
     def parse(command):
 
-        b = Basement('Basement','Storage')
-        s = StorageRoom('StorageRoom','Resting Room')
-        r = RestingRoom('RestingRoom','Kids Room')
-        k = KidsRoom('KidsRoom','')
+        b = Basement('Basement')
+        s = StorageRoom('StorageRoom')
+        r = RestingRoom('RestingRoom')
+        #k = KidsRoom('KidsRoom','')
         b.add_items()
         s.add_items()
      
@@ -29,6 +32,10 @@ class Parser:
                 string+= token
 
             if token == 'door':
+                string+= ' '+token
+                return string
+
+            if token == 'next':
                 string+= ' '+token
                 return string
 
@@ -58,4 +65,3 @@ class Parser:
             
         return 'Not a valid command! Try again'
     
-print(Parser.parse('open thew door axe solid'))
