@@ -10,7 +10,6 @@ class Menu:
         print('Main menu of the game: ')
         print('Play - starts the game')
         print('Help - view all the commands')
-        print('About - info about the creator of the game')
         print('Exit - closes the application')
         
     @staticmethod

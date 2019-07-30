@@ -1,20 +1,19 @@
-from Furnitures import Furniture
+
 from Items import Items
 from Player import Player
 from Rooms import Room
 
 class StorageRoom(Room):
 
+    items=[]
+
     def __init__(self,name,):
         self.name =name
-        self.items =[]
 
 
     def show_info(self):
         print('This is a storage room! Looks like just another room filled with boxes and barrels, but look out! Rah! It has a chain over the door. It links to the resting rooms')
-        print('It has the following furnitures inside:')
-     
-        print('and the following items scattered all over the room: ')
+        print('It has the following items scattered all over the room: ')
         for item in self.items:
             print(item.name)
 
@@ -31,21 +30,24 @@ class StorageRoom(Room):
 
     def open_door(self):
         keyItem =''
-        axeItem =''
+        axeItem = ''
         for i in self.items:
             if i.name=='Storagekey':
                 keyItem = i
-            if i.name =='Axe':
-                axeItem = i
+
+        for item in Player.inventory.collection_of_items:
+            if item.name == "Axe" or item.name == 'Hammer':
+                axeItem = item
 
         if Player.inventory.check_if_has_item(keyItem) and Player.inventory.check_if_has_item(axeItem):
-            print('Congrats! The door is now opened')
+            print('You opened the Storageroom door!')
             return True
         else:
-            print('Cannot open the door you either dont have a key or you dont have anything to smash the chain')
+            print('Cannot open the Storageroom door you either dont have a key or you dont have anything to smash the chain')
             return False
 
     
     def all_passed(self):
         if self.has_door() and self.open_door():
             return True
+        return False

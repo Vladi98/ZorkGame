@@ -5,18 +5,19 @@ from Rooms import Room
 
 class Hallway(Room):
 
+    items =[]
     def __init__(self,name):
         self.name =name
-        self.items =[]
+        
 
 
     def show_info(self):
-        print('You are in a long hallway! A door can be seen in the dictance, but between you and the door, there is a big hall, make sure you have something to put over it so you can pass.') 
+        print('You are in a long hallway! A door can be seen in the dictance, but between you and the door, there is a big hall, make sure you have something to put over it so you can pass. Also the hall needs to be covered before going up') 
         print("The only item here is: ")
         for item in self.items:
             print(item.name)
 
-    
+
     def has_door(self):
         return True
 
@@ -29,7 +30,7 @@ class Hallway(Room):
 
     def has_no_hall(self):
         board=''
-        for i in self.items:
+        for i in Player.inventory.collection_of_items:
             if i.name=='Board':
                 board = i
                 break
@@ -42,10 +43,13 @@ class Hallway(Room):
 
 
     def open_door(self):
-        print('You opened the door it was not locked! There are stairs')
-        return True
+        if self.has_no_hall():
+            print('You opened the Hallway door it was not locked! There are stairs')
+            return True
+        return False
 
     def all_passed(self):
-        if self.has_door() and self.open_door() and self.has_ligher():
+        if self.has_door() and self.open_door() and self.has_ligher() and self.has_no_hall():
             return True
+        return False
     

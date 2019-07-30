@@ -5,9 +5,11 @@ from Items import Items
 class RestingRoom(Room):
 
 
+    items =[]
+
     def __init__(self,name):
         self.name =name
-        self.items =[]
+        
 
 
     def show_info(self):
@@ -34,20 +36,22 @@ class RestingRoom(Room):
 
     def open_door(self):
         keyItem =''
-        for i in self.items:
+        for i in Player.inventory.collection_of_items:
             if i.name=='Iphone10':
                 keyItem = i
 
         if Player.inventory.check_if_has_item(keyItem):
+            print("The door is protected with password. The password is the same as MentorMate1 Wifi - password")
             password = input('Enter password: ')
             if password=='MentorMate1':
                 print('Congrats! The door is now opened')
+                password = 'MentorMate1'
                 return True
             else:
                 print('Incorrect password!')
                 return False
         else:
-            print('Cannot open the door it is protected via password. The password is the same as MentorMate1 Wifi - password. To enter the password you must have an electronic device in you, currently you dont! :)')
+            print('Cannot open the Restingroom door it is protected via password. The password is the same as MentorMate1 Wifi - password. To enter the password you must have an electronic device in you, currently you dont! :)')
             return False
 
 
@@ -55,3 +59,4 @@ class RestingRoom(Room):
     def all_passed(self):
         if self.has_door() and self.open_door():
             return True
+        return False

@@ -1,7 +1,8 @@
-from Items import Items
 from Commands import Commands
 from Player import Player
 from Rooms import Room
+from Items import Items
+
 
 class Basement(Room):
 
@@ -13,13 +14,15 @@ class Basement(Room):
 
     
     def show_info(self):
-        print("This is the basement, it is dark in here! This is your starting position! You are wrapped but you have a knife in you. Use it to free yourself. There is a door use it to exit the basement")
+        print("This is the basement, it is dark in here! This is your starting position! There is a door use it to exit the basement!")
         print("The following items are scattered all over the basement: ")
         for item in self.items:
             print(item.get_name())
 
 
     def add_items(self):
+
+
         item1 = Items('Machete','This is a big and sharp machete you can use it to free yourself')
         item2  = Items('Basementkey','This is a key use it to open the door')
         item3 = Items('Lighter','This is a lighter use it to see where you are')
@@ -36,7 +39,7 @@ class Basement(Room):
 
     def has_ligher(self):
         lighter =''
-        for i in Basement.items:
+        for i in Player.inventory.collection_of_items:
             if i.name=='Lighter':
                 lighter = i
                 break
@@ -49,20 +52,20 @@ class Basement(Room):
 
     def open_door(self):
         keyItem =''
-        for i in Basement.items:
+        for i in Player.inventory.collection_of_items:
             if i.name=='Basementkey':
                 keyItem = i
                 break
 
         if Player.inventory.check_if_has_item(keyItem):
-            print('The door is now open! There are stairs')
             return True
         
-        print('Cannot open the door you dont have the neccesary key')
+        print('Cannot open the Basement door you dont have the neccesary key')
         return False
 
 
     def all_passed(self):
         if self.has_door() and self.open_door() and self.has_ligher():
             return True
+        return False
 

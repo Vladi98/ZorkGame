@@ -4,14 +4,15 @@ from Player import Player
 
 class Closet(Room):
 
+    items =[]
 
     def __init__(self,name):
         self.name =name
-        self.items =[]
+        
 
 
     def show_info(self):
-        print('You are in the closet! A very tiny and dark place. You should have a lighter in you to see the door and open it. This closet links directly to the hallway which will take you to the second floor.') 
+        print('You are in the closet! A very tiny and dark place. You should have a lighter in you to see the door and open it.') 
         print('There are no items here! It is empty!')
 
     
@@ -22,7 +23,7 @@ class Closet(Room):
 
     def has_ligher(self):
         lighter =''
-        for i in Basement.items:
+        for i in Player.inventory.collection_of_items:
             if i.name=='Lighter':
                 lighter = i
                 break
@@ -36,10 +37,11 @@ class Closet(Room):
 
 
     def open_door(self):
-        print('You opened the door it was not locked! There are stairs')
+        print('You opened the closet door it was not locked! There are stairs')
         return True
 
     def all_passed(self):
         if self.has_door() and self.open_door() and self.has_ligher():
             return True
+        return False
 
